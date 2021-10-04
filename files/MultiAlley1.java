@@ -20,16 +20,14 @@ public class MultiAlley extends Alley {
     public void enter(int no) throws InterruptedException {
         if (no < 5) {
             downSem.P();
-            // Thread.sleep(1000); // Multi1
-            if (down == 0) {
+            Thread.sleep(1000);
+            if (down == 0)
                 upSem.P(); // block for up-going cars
-            }
-            // Thread.sleep(1000); // Multi2
             down++;
             downSem.V();
         } else {
             upSem.P();
-            // Thread.sleep(1000); // Multi1
+            Thread.sleep(1000);
             if (up == 0)
                 downSem.P(); // block for down-going cars
             up++;
